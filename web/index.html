@@ -31,31 +31,44 @@
 
           <h3>Settings</h3>
 
-            <form>
+          <p>
 
-            <p><label>Position on screen (only for desktop and tablet)<br/ >
+            <hr />
+            <form id="customize">
+
+            <label>
+              <input type="text" id="setting-clslrtid">
+              CloseAlert ID
+            </label>
+
+            <label>
               <select id="setting-position">
-                <option>Right</option>
-                <option>Bottom</option>
+                <option value="right">Right</option>
+                <option value="bottom">Bottom</option>
               </select>
-            </label></p>
+              Position on screen (only for desktop and tablet)
+            </label>
 
-            <p><label>Icons<br />
-              <select id="setting-icon">
-                <option>Faces</option>
-                <option>Thumbs</option>
+            <label>
+              <select id="setting-icons">
+                <option value="faces">Faces</option>
+                <option value="thumbs">Thumbs</option>
               </select>
-            </label></p>
+              Icons
+            </label>
 
-            <p><label>Language (for custom languages, see <q>customizing</q> section below)<br />
+            <label>
               <select id="setting-lang">
-                <option>Default (browser language)</option>
-                <option>Dutch</option>
-                <option>English</option>
+                <option value="default">Default (browser language)</option>
+                <option value="nl">Dutch</option>
+                <option value="en">English</option>
               </select>
-            </label></p>
+              Language (for custom languages, see <q>customizing</q> section below)
+            </label>
 
             </form>
+          </p>
+          <hr />
 
           <h3>Code to implement</h3>
           <p>Place the code below just before the closing &lt;/body&gt; tag.</p>
@@ -63,11 +76,7 @@
           <pre><code>
 &lt;script type="text/javascript" language="javascript"&gt;
 (function(b){function c(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==b.location.protocol?"https:":"http:")+"//static.closealert.com/s/ws/v2/ca.js";document.getElementsByTagName("body")[0].appendChild(a)}var a={q:[],c:function(b){return function(){a.q.push([b,arguments])}}};a.setting=a.c("setting");a.feedbackParam=a.c("feedbackParam");a.trackPageview=a.c("trackPageview");a.locale=a.c("locale");b.__clslrt=a;b.attachEvent?b.attachEvent("onload",c):b.addEventListener("load",c,!1)})(window);
-
-__clslrt.setting('position', 'right');
-__clslrt.setting('language', 'nl');
-__clslrt.setting('id', '32vR49');
-__clslrt.setting('icons', 'faces');
+<span id="setting-clslrtid-output">__clslrt.setting('id', '32vR49');</span><span id="setting-position-output">__clslrt.setting('position', 'right');</span><span id="setting-lang-output">__clslrt.setting('language', 'nl');</span><span id="setting-icons-output">__clslrt.setting('icons', 'faces');</span>
 
 __clslrt.trackPageview();
 &lt;/script&gt;

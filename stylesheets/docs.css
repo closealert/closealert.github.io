@@ -1,0 +1,9 @@
+label {
+	display: block;
+	height: 30px;
+}
+label input,
+label select {
+	display: block;
+	float: right;
+}
