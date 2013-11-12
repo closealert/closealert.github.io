@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Documentation for developers by closealert</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/docs.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Documentation for developers</h1>
+        <p>CloseAlert customer feedback software</p>
+        <!-- <p class="view"><a href="https://github.com/closealert">View My GitHub Profile</a></p> -->
+      </header>
+
+      <section>
+          <h2>
+            <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>
+            CloseAlert for websites
+          </h2>
+
+          <p></p>
+
+          <h3>Settings</h3>
+
+            <form>
+
+            <p><label>Position on screen (only for desktop and tablet)<br/ >
+              <select id="setting-position">
+                <option>Right</option>
+                <option>Bottom</option>
+              </select>
+            </label></p>
+
+            <p><label>Icons<br />
+              <select id="setting-icon">
+                <option>Faces</option>
+                <option>Thumbs</option>
+              </select>
+            </label></p>
+
+            <p><label>Language (for custom languages, see <q>customizing</q> section below)<br />
+              <select id="setting-lang">
+                <option>Default (browser language)</option>
+                <option>Dutch</option>
+                <option>English</option>
+              </select>
+            </label></p>
+
+            </form>
+
+          <h3>Code to implement</h3>
+          <p>Place the code below just before the closing &lt;/body&gt; tag.</p>
+
+          <pre><code>
+&lt;script type="text/javascript" language="javascript"&gt;
+(function(b){function c(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==b.location.protocol?"https:":"http:")+"//static.closealert.com/s/ws/v2/ca.js";document.getElementsByTagName("body")[0].appendChild(a)}var a={q:[],c:function(b){return function(){a.q.push([b,arguments])}}};a.setting=a.c("setting");a.feedbackParam=a.c("feedbackParam");a.trackPageview=a.c("trackPageview");a.locale=a.c("locale");b.__clslrt=a;b.attachEvent?b.attachEvent("onload",c):b.addEventListener("load",c,!1)})(window);
+
+__clslrt.setting('position', 'right');
+__clslrt.setting('language', 'nl');
+__clslrt.setting('id', '32vR49');
+__clslrt.setting('icons', 'faces');
+
+__clslrt.trackPageview();
+&lt;/script&gt;
+          </code></pre>
+
+          <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+
+          <h3>
+          <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Customizing</h3>
+
+          <p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+
+      </section>
+
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <script type="text/javascript" src="javascripts/docs.js"></script>
+  </body>
+</html>
