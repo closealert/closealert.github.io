@@ -27,7 +27,7 @@
             CloseAlert voor websites
           </h2>
 
-          <p></p>
+          <p>Op deze pagina staan de instructies beschreven om CloseAlert op uw website te implementeren.</p>
 
           <h3>Instellingen</h3>
 
@@ -38,13 +38,13 @@
 
             <label>
               <input type="text" id="setting-clslrtid">
-              CloseAlert ID
+              CloseAlert ID (pas alleen aan als u weet wat dit is)
             </label>
 
             <label>
               <select id="setting-position">
-                <option value="right">Right</option>
-                <option value="bottom">Bottom</option>
+                <option value="right">Rechts boven</option>
+                <option value="bottom">Rechts onder</option>
               </select>
               Positie op scherm (alleen voor desktop and tablet)
             </label>
@@ -59,7 +59,7 @@
 
             <label>
               <select id="setting-lang">
-                <option value="default">Standaar (taal browser)</option>
+                <option value="default">Standaard (taal browser)</option>
                 <option value="nl">Nederlands</option>
                 <option value="en">Engels</option>
               </select>
@@ -82,13 +82,51 @@ __clslrt.trackPageview();
 &lt;/script&gt;
           </code></pre>
 
-          <p>.</p>
-
           <h3>
           <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Customizen</h3>
 
-          <p>.</p>
+          <p>De code voor CloseAlert voor websites is geschreven om maximale flexibiliteit te geven aan de webmaster. Hierdoor kunt u zowel de tekstals het uiterlijk geheel aanpassen aan uw organisatie.</p>
 
+          <h4>Tekst aanpassen</h4>
+          <p>Om de tekst aan te passen kunt u gebruikmaken van de functie <code>__clslrt.locale</code>. Deze functie heeft de volgene syntax:
+            <pre><code>
+__clslrt.locale("&lt;TAAL_ID&gt;", {
+  &lt;BERICHT_ID&gt;: "&lt;Tekst voor BERICHT_ID&gt;"<span style="opacity:.33;">,
+  &lt;TEKST_ID&gt;: "&lt;Tekst voor TEKST_ID&gt;"</span>
+});</code></pre>
+            Hierin zijn de volgende waarden belangrijk:
+            <ul>
+              <li><code>&lt;TAAL_ID&gt;</code> Het tweeletterige id van de taal, bijv. <em>nl</em> voor Nederlands</li>
+              <li><code>&lt;TEKST_ID&gt;</code> Het id van de tekst, bijv. <em>widgetTitleMobile</em> voor de tekst die in de mobiele weergave naast de knoppen staat of <em>messagePlaceholderPos</em> voor de tekst die bij positieve feedback in het tekstvak staat.</li>
+            </ul>
+
+          </p>
+
+          <p>
+            De volledige taalconfiguratie voor Nederlands is als volgt:
+            <pre><code>
+__clslrt.locale({
+    titlePos: 'positieve feedback',
+    titleNeg: 'negatieve feedback',
+
+    messagePlaceholderPos: 'vertel even kort waarom je positief bent over deze pagina',
+    messagePlaceholderNeg: 'vertel even kort waarom je negatief bent over deze pagina',
+
+    widgetTitle: 'Feedback',
+    widgetTitleMobile: 'We &amp;#x2764; feedback',
+
+    emailPlaceholder: 'e-mailadres...',
+
+    send: 'stuur',
+
+    sending: 'Bezig met versturen...',
+    sent: 'we hebben je feedback ontvangen!',
+
+    messageTooShort: 'uw bericht is te kort',
+    emailIncorrect: 'uw e-mailadres is niet juist',
+    and: 'en'
+});
+</code></pre></p>
       </section>
 
       <footer>
