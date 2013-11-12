@@ -26,7 +26,7 @@
 
     updateSetting('setting-clslrtid');
     updateSetting('setting-icons');
-    updateSetting('setting-lang');
+    updateSetting('setting-language');
     updateSetting('setting-position');
   });
 })(jQuery);
