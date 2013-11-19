@@ -5,7 +5,7 @@
     // Read id from hash
     if(document.location.hash && document.location.hash.indexOf('id=')!==-1) {
       id = document.location.hash.split('id=')[1];
-      $('#setting-clslrtid').val(id);
+      $('#setting-id').val(id);
     }
 
     function updateSetting(settingInputElementId, value) {
@@ -24,7 +24,7 @@
       updateSetting($(this).attr('id'), $(this).val());
     });
 
-    updateSetting('setting-clslrtid');
+    updateSetting('setting-id');
     updateSetting('setting-icons');
     updateSetting('setting-language');
     updateSetting('setting-position');
