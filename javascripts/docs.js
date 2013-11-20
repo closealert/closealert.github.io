@@ -15,7 +15,7 @@
 
       $('#'+settingInputElementId+'-output').show();
       if(value!=='default')
-        $('#'+settingInputElementId+'-output').html("\n__clslrt.setting('"+settingInputElementId.replace('setting-','')+"', '"+value+"');");
+        $('#'+settingInputElementId+'-output').html("\n__clslrt.setting('"+settingInputElementId.replace('setting-','')+"', " + (value!=='true' ? "'"+value+"'" : value)+");");
       else
         $('#'+settingInputElementId+'-output').hide();
     }
@@ -28,5 +28,6 @@
     updateSetting('setting-icons');
     updateSetting('setting-language');
     updateSetting('setting-position');
+    updateSetting('setting-noemail');
   });
 })(jQuery);
