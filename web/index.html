@@ -169,7 +169,7 @@ __clslrt.locale({
           <p><b>Internet explorer 8</b><br />
             In IE8 worden de knoppen volledig in de sprite voor de CloseAlert widget meegenomen. Dit betekent dat naast de knoppen er ook andere elementen in de sprite zitten.<br />
             <b>Type:</b> Sprite van 26 x 110 pixels (wxh) met transparante achtergrond.<br />
-            <b>Voorbeeld:</b> http://analytics.closealert.com/s/ws/v2/_img/thumbs-ie.png<br />
+            <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-ie.png">Voorbeeld</a><br />
             <b>CSS:</b><br />
           <pre><code>
 .__clslrt_msie_8 .__clslrt_app .__clslrt_app_arrow {
@@ -179,49 +179,40 @@ __clslrt.locale({
 .__clslrt_msie_8 .__clslrt_widget .__clslrt_button {
   background-image: url('URL_NAAR_AFBEELDING_VOOR_IE8') !important;
 }
-</code></pre>
+          </code></pre></p>
 
+          <p><b>Internet explorer 7</b><br />
+            In IE7 zitten de knoppen in een niet-transparente sprite omdat deze browser transparantie in PNG-afbeeldingen nog niet correct ondersteunt. Daarnaast zitten er geen andere elementen in de sprite.<br />
+            <b>Type:</b> Sprite van 26 x 56 pixels (wxh) met witte achtergrond.<br />
+            <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-ienosup.gif">Voorbeeld</a><br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_msie_7 .__clslrt_widget .__clslrt_button {
+  background-image: url('URL_NAAR_AFBEELDING_VOOR_IE7') !important;
+}
+          </code></pre></p>
 
-            Internet explorer 7
-            A sprite of 26 x 56 pixels (wxh) with a white background.
-            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-ienosup.gif
+          <p><b>Andere browsers</b><br />
+            In andere browsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Ook wordt in andere browsers rekening gehouden met schermen van een hogere resolutie (zoals bij tablets dat het geval is). Om deze reden is de sprite in andere browsers van een hogere resolutie.<br />
+            <b>Type:</b> Sprite van 48 x 200 pixels (wxh) met transparante achtergrond.<br />
+            <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-pc.png">Voorbeeld</a><br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_widget_thumbs .__clslrt_button {
+    background-image: url('URL_NAAR_AFBEELDING') !important;
+}
+          </code></pre></p>
 
-
-              .__clslrt_msie_7 .__clslrt_widget_thumbs .__clslrt_button {
-                background-image: url('../_img/thumbs-ienosup.gif');
-              }
-              .__clslrt_msie_7 .__clslrt_widget_faces .__clslrt_button {
-                background-image: url('../_img/faces-ienosup.gif');
-              }
-
-
-
-            Other browsers
-            A sprite of 48 x 200 pixels with a transparent background.
-            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-pc.png
-
-
-              .__clslrt_widget_thumbs .__clslrt_button {
-                  background-image: url('../_img/thumbs-pc.png');
-              }
-
-              .__clslrt_widget_faces .__clslrt_button {
-                  background-image: url('../_img/faces-pc.png');
-              }
-
-
-            Mobile browsers (Android + iOS)
-            A sprite of 128x500 pixels with a transparent background.
-            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-mob.png
-
-
-              .__clslrt_mobile .__clslrt_widget .__clslrt_widget_thumbs .__clslrt_button {
-                  background-image:url('../_img/thumbs-mob.png');
-              }
-
-              .__clslrt_mobile .__clslrt_widget .__clslrt_widget_faces .__clslrt_button {
-                  background-image:url('../_img/faces-mob.png');
-              }
+          <p><b>Mobiele (telefoon) browsers</b><br />
+            Ook in mobielebrowsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Aangezien steeds meer smartphones retina-schermen krijgen is de sprite in een nog hogere resolutie.<br />
+            <b>Type:</b> Sprite van 128 x 500 pixels (wxh) met transparante achtergrond.<br />
+            <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-mob.png">Voorbeeld</a><br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_mobile .__clslrt_widget .__clslrt_widget_faces .__clslrt_button {
+    background-image:url('URL_NAAR_AFBEELDING_VOOR_MOBIEL');
+}
+          </code></pre></p>
 
       </section>
 
