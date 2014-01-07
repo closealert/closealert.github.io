@@ -159,6 +159,70 @@ __clslrt.locale({
     and: 'en'
 });
 </code></pre></p>
+
+
+        <h4>Knoppen aanpassen</h4>
+          <p>Om de iconen in de knoppen aan te passsen dient u delen uit de CSS die door CloseAlert wordt gegenereerd aan te passen. <b>Let op: Hiervoor is goede kennis van HTML en CSS nodig.</b></p>
+
+          <p>Voor de knoppen wordt per browser een andere afbeelding geladen, met andere afmetingen. Dit is om de knoppen op alle ondersteunde browsers optimaal weer te geven. Hieronder staan de specificaties van de afbeelding per browser. U kunt ook een voorbeeld bekijken om de exacte positionering van de verschillende elementen af te leiden.</p>
+
+          <p><b>Internet explorer 8</b><br />
+            In IE8 worden de knoppen volledig in de sprite voor de CloseAlert widget meegenomen. Dit betekent dat naast de knoppen er ook andere elementen in de sprite zitten.<br />
+            <b>Type:</b> Sprite van 26 x 110 pixels (wxh) met transparante achtergrond.<br />
+            <b>Voorbeeld:</b> http://analytics.closealert.com/s/ws/v2/_img/thumbs-ie.png<br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_msie_8 .__clslrt_app .__clslrt_app_arrow {
+  background-image: url('URL_NAAR_AFBEELDING_VOOR_IE8') !important;
+}
+
+.__clslrt_msie_8 .__clslrt_widget .__clslrt_button {
+  background-image: url('URL_NAAR_AFBEELDING_VOOR_IE8') !important;
+}
+</code></pre>
+
+
+            Internet explorer 7
+            A sprite of 26 x 56 pixels (wxh) with a white background.
+            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-ienosup.gif
+
+
+              .__clslrt_msie_7 .__clslrt_widget_thumbs .__clslrt_button {
+                background-image: url('../_img/thumbs-ienosup.gif');
+              }
+              .__clslrt_msie_7 .__clslrt_widget_faces .__clslrt_button {
+                background-image: url('../_img/faces-ienosup.gif');
+              }
+
+
+
+            Other browsers
+            A sprite of 48 x 200 pixels with a transparent background.
+            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-pc.png
+
+
+              .__clslrt_widget_thumbs .__clslrt_button {
+                  background-image: url('../_img/thumbs-pc.png');
+              }
+
+              .__clslrt_widget_faces .__clslrt_button {
+                  background-image: url('../_img/faces-pc.png');
+              }
+
+
+            Mobile browsers (Android + iOS)
+            A sprite of 128x500 pixels with a transparent background.
+            Example: http://analytics.closealert.com/s/ws/v2/_img/thumbs-mob.png
+
+
+              .__clslrt_mobile .__clslrt_widget .__clslrt_widget_thumbs .__clslrt_button {
+                  background-image:url('../_img/thumbs-mob.png');
+              }
+
+              .__clslrt_mobile .__clslrt_widget .__clslrt_widget_faces .__clslrt_button {
+                  background-image:url('../_img/faces-mob.png');
+              }
+
       </section>
 
       <footer>
