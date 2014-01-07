@@ -24,6 +24,8 @@
           <a href="#settings">Instellingen</a><br />
           <a href="#code">Javascript-code voor implementatie</a><br />
           <a href="#custom">Customizen</a><br />
+          <a href="#custom-txt">&nbsp;&nbsp;&nbsp;Tekst</a><br />
+          <a href="#custom-btn">&nbsp;&nbsp;&nbsp;Knoppen</a><br />
           <a href="#cookies">Cookies</a><br />
         </p>
       </header>
@@ -118,7 +120,7 @@ __clslrt.trackPageview();
           </h3>
 
           <p>De code voor CloseAlert voor websites is geschreven om maximale flexibiliteit te geven aan de webmaster. Hierdoor kunt u zowel de tekst als het uiterlijk geheel aanpassen aan uw organisatie.</p>
-
+          <a name="custom-txt" class="anchor" href="#custom-txt"><span class="octicon octicon-link"></span></a>
           <h4>Tekst aanpassen</h4>
           <p>Om de tekst aan te passen kunt u gebruikmaken van de functie <code>__clslrt.locale</code>. Deze functie heeft de volgene syntax:
             <pre><code>
@@ -160,14 +162,14 @@ __clslrt.locale({
 });
 </code></pre></p>
 
-
+        <a name="custom-btn" class="anchor" href="#custom-btn"><span class="octicon octicon-link"></span></a>
         <h4>Knoppen aanpassen</h4>
           <p>Om de iconen in de knoppen aan te passsen dient u delen uit de CSS die door CloseAlert wordt gegenereerd aan te passen. <b>Let op: Hiervoor is goede kennis van HTML en CSS nodig.</b></p>
 
           <p>Voor de knoppen wordt per browser een andere afbeelding geladen, met andere afmetingen. Dit is om de knoppen op alle ondersteunde browsers optimaal weer te geven. Hieronder staan de specificaties van de afbeelding per browser. U kunt ook een voorbeeld bekijken om de exacte positionering van de verschillende elementen af te leiden.</p>
 
           <p><b>Internet explorer 8</b><br />
-            In IE8 worden de knoppen volledig in de sprite voor de CloseAlert widget meegenomen. Dit betekent dat naast de knoppen er ook andere elementen in de sprite zitten.<br />
+            In IE8 worden de knoppen volledig in de sprite voor de CloseAlert widget meegenomen. Dit betekent dat naast de knoppen er ook andere elementen in de sprite zitten. <br />
             <b>Type:</b> Sprite van 26 x 110 pixels (wxh) met transparante achtergrond.<br />
             <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-ie.png">Voorbeeld</a><br />
             <b>CSS:</b><br />
@@ -200,7 +202,7 @@ __clslrt.locale({
           </code></pre></p>
 
           <p><b>Mobiele (telefoon) browsers</b><br />
-            Ook in mobielebrowsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Aangezien steeds meer smartphones retina-schermen krijgen is de sprite in een nog hogere resolutie.<br />
+            Ook in mobiele browsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Aangezien steeds meer smartphones retina-schermen krijgen is de sprite in een nog hogere resolutie.<br />
             <b>Type:</b> Sprite van 128 x 500 pixels (wxh) met transparante achtergrond.<br />
             <a href="http://analytics.closealert.com/s/ws/v2/_img/thumbs-mob.png">Voorbeeld</a><br />
             <b>CSS:</b><br />
