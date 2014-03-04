@@ -15,7 +15,7 @@
 
       $('#'+settingInputElementId+'-output').show();
       if(value!=='default')
-        $('#'+settingInputElementId+'-output').html("\n__clslrt.setting('"+settingInputElementId.replace('setting-','')+"', " + (value!=='true' ? "'"+value+"'" : value)+");");
+        $('#'+settingInputElementId+'-output').html("\n__clslrt.setting('"+settingInputElementId.replace('setting-','')+"', " + ((value!=='true' && value!=='false') ? "'"+value+"'" : value)+");");
       else
         $('#'+settingInputElementId+'-output').hide();
     }
