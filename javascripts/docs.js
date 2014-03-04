@@ -29,6 +29,6 @@
     updateSetting('setting-language');
     updateSetting('setting-position');
     updateSetting('setting-noemail');
-    updateSetting('setting-nomobile');
+    updateSetting('setting-mobile');
   });
 })(jQuery);
