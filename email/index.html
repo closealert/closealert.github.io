@@ -16,7 +16,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>CloseAlert for Websites</h1>
+        <h1>CloseAlert for E-mail marketing</h1>
         <p>CloseAlert customer feedback software
         <br />Documentatie voor ontwikkelaars</p>
         <p class="view">
@@ -50,24 +50,24 @@
             <form id="customize">
 
             <label>
+              <select id="setting-icons">
+                <option value="face">Smileys</option>
+                <option value="thumb">Duimpjes</option>
+              </select>
+              Iconen
+            </label>
+<!-- 
+
+            <label>
               <input type="text" id="setting-id">
               CloseAlert ID (pas alleen aan als u weet wat dit is)
             </label>
-<!-- 
             <label>
               <select id="setting-position">
                 <option value="right">Rechts boven</option>
                 <option value="bottom">Rechts onder</option>
               </select>
               Positie op scherm (alleen voor desktop en tablet)
-            </label>
-
-            <label>
-              <select id="setting-icons">
-                <option value="faces">Smileys</option>
-                <option value="thumbs">Duimpjes</option>
-              </select>
-              Iconen
             </label>
 
             <label>
@@ -114,13 +114,13 @@
     &lt;/td>
     &lt;td width="45" align="right">
       &lt;a style="display:block;" href="http://app.closealert.com/<span class="setting-id-output"></span>/positive">
-        &lt;img src="http://static.closealert.com/s/nl/v2/face_happy.jpg" />
+        &lt;img src="http://static.closealert.com/s/nl/v2/<span class="setting-icons-output">face</span>_happy.jpg" />
       &lt;/a>
     &lt;/td>
-    &lt;td width="20" height="50"> &lt;/td>
+    &lt;td iconsdth="20" height="50"> &lt;/td>
     &lt;td width="45" align="left">
       &lt;a href="http://app.closealert.com/<span class="setting-id-output"></span>/negative">
-        &lt;img src="http://static.closealert.com/s/nl/v2/face_unhappy.jpg" />
+        &lt;img src="http://static.closealert.com/s/nl/v2/<span class="setting-icons-output">face</span>_unhappy.jpg" />
       &lt;/a>
     &lt;/td>
     &lt;td>
