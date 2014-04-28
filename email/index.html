@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Documentation for developers by closealert</title>
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/docs.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>CloseAlert for Websites</h1>
+        <p>CloseAlert customer feedback software
+        <br />Documentatie voor ontwikkelaars</p>
+        <p class="view">
+          <a href="#start">Voorbeeld</a><br />
+<!--           <a href="#settings">Instellingen</a><br />
+          <a href="#code">Javascript-code voor implementatie</a><br />
+          <a href="#custom">Customizen</a><br />
+          <a href="#custom-txt">&nbsp;&nbsp;&nbsp;Tekst</a><br />
+          <a href="#custom-btn">&nbsp;&nbsp;&nbsp;Knoppen</a><br />
+          <a href="#cookies">Cookies</a><br /> -->
+        </p>
+      </header>
+
+      <section>
+          <h2>
+            <a name="start" class="anchor" href="#start"><span class="octicon octicon-link"></span></a>
+            CloseAlert voor e-mail marketing
+          </h2>
+
+          <p>Op deze pagina staan de instructies beschreven om CloseAlert in uw e-mail marketing te implementeren.</p>
+
+          <p><img src="example.png" /></p>
+
+          <h3><a name="settings" class="anchor" href="#settings"><span class="octicon octicon-link"></span></a>
+            Instellingen
+          </h3>
+
+          <p>
+
+            <hr />
+            <form id="customize">
+
+            <label>
+              <input type="text" id="setting-id">
+              CloseAlert ID (pas alleen aan als u weet wat dit is)
+            </label>
+<!-- 
+            <label>
+              <select id="setting-position">
+                <option value="right">Rechts boven</option>
+                <option value="bottom">Rechts onder</option>
+              </select>
+              Positie op scherm (alleen voor desktop en tablet)
+            </label>
+
+            <label>
+              <select id="setting-icons">
+                <option value="faces">Smileys</option>
+                <option value="thumbs">Duimpjes</option>
+              </select>
+              Iconen
+            </label>
+
+            <label>
+              <select id="setting-language">
+                <option value="default">Standaard (taal browser)</option>
+                <option value="nl">Nederlands</option>
+                <option value="en">Engels</option>
+              </select>
+              Taal (voor andere talen, zie de <q>customizen</q> sectie)
+            </label>
+
+            <label>
+              <select id="setting-noemail">
+                <option value="default">Nee (standaard)</option>
+                <option value="true">Uitschakelen</option>
+              </select>
+              E-mail adres uitschakelen
+            </label>
+
+            <label>
+              <select id="setting-mobile">
+                <option value="default">Nee (standaard)</option>
+                <option value="false">Uitschakelen</option>
+              </select>
+              Uitschakelen op mobile telefoons
+            </label> -->
+            </form>
+          </p>
+          <hr />
+
+          <h3><a name="code" class="anchor" href="#code"><span class="octicon octicon-link"></span></a>
+            Code om te implementeren
+          </h3>
+          <p>Plaats onderstaande code in uw template.</p>
+
+          <pre><code>
+&lt;table class="closealert-feedback-widget" cellpadding="0" cellspacing="0" border="0" width="100%">
+  &lt;tr>
+    &lt;td colspan="5" height="60">&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>
+      &lt;a style="display:block; font-family: proxima_nova,'Open Sans','Lucida Grande','Segoe UI',Arial,Verdana,'Lucida Sans Unicode',Tahoma,'Sans Serif'; font-weight:bold; font-size:16px; text-align:right;" href="http://app.closealert.com/TllllT/positive">Positief&lt;/a>
+    &lt;/td>
+    &lt;td width="45" align="right">
+      &lt;a style="display:block;" href="http://app.closealert.com/TllllT/positive">
+        &lt;img src="http://app.closealert.com/src/img/face_happy.jpg" />
+      &lt;/a>
+    &lt;/td>
+    &lt;td width="20" height="50"> &lt;/td>
+    &lt;td width="45" align="left">
+      &lt;a href="http://app.closealert.com/TllllT/negative">
+        &lt;img src="http://app.closealert.com/src/img/face_unhappy.jpg" />
+      &lt;/a>
+    &lt;/td>
+    &lt;td>
+      &lt;a style="display:block; font-family: proxima_nova,'Open Sans','Lucida Grande','Segoe UI',Arial,Verdana,'Lucida Sans Unicode',Tahoma,'Sans Serif'; font-weight:bold; font-size:16px; text-align:left;" href="http://app.closealert.com/TllllT/negative">Negatief&lt;/a>
+    &lt;/td>
+  &lt;/tr>
+&lt;/table>
+          </code></pre>
+
+          <h3><a name="cookies" class="anchor" href="#cookies"><span class="octicon octicon-link"></span></a>
+            Cookies
+          </h3>
+
+          <p>CloseAlert plaatst automatisch cookies op de computer van de bezoeker om het navigatiepad op uw site bij te houden. Dankzij deze cookies kunt u in het dashboard terugzien op welke manier een bezoeker door uw site is gelopen voordat hij/zij feedback gaf.</p>
+
+          <p>Mocht u deze cookies willen uitschakelen, dan is dit mogelijk door de volgende regel toe te voegen aan de CloseAlert code:</p>
+
+          <pre><code>__clslrt.setting("notrack", true);</code></pre>
+
+
+          <h3><a name="custom" class="anchor" href="#custom"><span class="octicon octicon-link"></span></a>
+            Customizen
+          </h3>
+
+          <p>De code voor CloseAlert voor websites is geschreven om maximale flexibiliteit te geven aan de webmaster. Hierdoor kunt u zowel de tekst als het uiterlijk geheel aanpassen aan uw organisatie.</p>
+          <a name="custom-txt" class="anchor" href="#custom-txt"><span class="octicon octicon-link"></span></a>
+          <h4>Tekst aanpassen</h4>
+          <p>Om de tekst aan te passen kunt u gebruikmaken van de functie <code>__clslrt.locale</code>. Deze functie heeft de volgene syntax:
+            <pre><code>
+__clslrt.locale("&lt;TAAL_ID&gt;", {
+  &lt;BERICHT_ID&gt;: "&lt;Tekst voor BERICHT_ID&gt;"<span style="opacity:.33;">,
+  &lt;TEKST_ID&gt;: "&lt;Tekst voor TEKST_ID&gt;"</span>
+});</code></pre>
+            Hierin zijn de volgende waarden belangrijk:
+            <ul>
+              <li><code>&lt;TAAL_ID&gt;</code> Het tweeletterige id van de taal, bijv. <em>nl</em> voor Nederlands</li>
+              <li><code>&lt;TEKST_ID&gt;</code> Het id van de tekst, bijv. <em>widgetTitleMobile</em> voor de tekst die in de mobiele weergave naast de knoppen staat of <em>messagePlaceholderPos</em> voor de tekst die bij positieve feedback in het tekstvak staat.</li>
+            </ul>
+
+          </p>
+
+          <p>
+            De volledige taalconfiguratie voor Nederlands is als volgt:
+            <pre><code>
+__clslrt.locale('nl', {
+    titlePos: 'positieve feedback',
+    titleNeg: 'negatieve feedback',
+
+    messagePlaceholderPos: 'vertel even kort waarom je positief bent over deze pagina',
+    messagePlaceholderNeg: 'vertel even kort waarom je negatief bent over deze pagina',
+
+    widgetTitle: 'Feedback',
+    widgetTitleMobile: 'Feedback',
+
+    emailPlaceholder: 'e-mailadres...',
+
+    send: 'stuur',
+
+    sending: 'Bezig met versturen...',
+    sent: 'we hebben je feedback ontvangen!',
+
+    messageTooShort: 'je bericht is te kort',
+    emailIncorrect: 'je e-mailadres is niet juist',
+    and: 'en'
+});
+</code></pre></p>
+
+        <a name="custom-btn" class="anchor" href="#custom-btn"><span class="octicon octicon-link"></span></a>
+        <h4>Knoppen aanpassen</h4>
+          <p>Om de iconen in de knoppen aan te passsen dient u delen uit de CSS die door CloseAlert wordt gegenereerd aan te passen. <b>Let op: Hiervoor is goede kennis van HTML en CSS nodig.</b></p>
+
+          <p>Voor de knoppen wordt per browser een andere afbeelding geladen, met andere afmetingen. Dit is om de knoppen op alle ondersteunde browsers optimaal weer te geven. Hieronder staan de specificaties van de afbeelding per browser. U kunt ook een voorbeeld bekijken om de exacte positionering van de verschillende elementen af te leiden.</p>
+
+          <p><b>Internet explorer 8 (<a href="http://analytics.closealert.com/s/ws/v2/_img/template-ie.png">Voorbeeld</a>)</b><br />
+            In IE8 worden de knoppen volledig in de sprite voor de CloseAlert widget meegenomen. Dit betekent dat naast de knoppen er ook andere elementen in de sprite zitten. <br />
+            <b>Type:</b> Sprite van 26 x 110 pixels (wxh) met transparante achtergrond.<br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_msie_8 .__clslrt_widget .__clslrt_button {
+  background-image: url('URL_NAAR_AFBEELDING_VOOR_IE8') !important;
+}
+          </code></pre></p>
+
+          <p><b>Internet explorer 7 (<a href="http://analytics.closealert.com/s/ws/v2/_img/template-ienosup.gif">Voorbeeld</a>)</b><br />
+            In IE7 zitten de knoppen in een niet-transparente sprite omdat deze browser transparantie in PNG-afbeeldingen nog niet correct ondersteunt. Daarnaast zitten er geen andere elementen in de sprite.<br />
+            <b>Type:</b> Sprite van 26 x 56 pixels (wxh) met witte achtergrond.<br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_msie_7 .__clslrt_widget .__clslrt_button {
+  background-image: url('URL_NAAR_AFBEELDING_VOOR_IE7') !important;
+}
+          </code></pre></p>
+
+          <p><b>Andere browsers (<a href="http://analytics.closealert.com/s/ws/v2/_img/template-retina.png">Voorbeeld</a>)</b><br />
+            In andere browsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Ook wordt in andere browsers rekening gehouden met schermen van een hogere resolutie (zoals bij tablets dat het geval is). Om deze reden is de sprite in andere browsers van een hogere resolutie.<br />
+            <b>Type:</b> Sprite van 48 x 200 pixels (wxh) met transparante achtergrond.<br />
+            <b>CSS:</b><br />
+          <pre><code>
+.__clslrt_widget_thumbs .__clslrt_button {
+    background-image: url('URL_NAAR_AFBEELDING') !important;
+}
+          </code></pre></p>
+
+          <p><b>Mobiele (telefoon) browsers (<a href="http://analytics.closealert.com/s/ws/v2/_img/template-mob.png">Voorbeeld</a>)</b><br />
+            Ook in mobiele browsers worden de iconen over de (gekleurde) achtergrond van de knoppen heen geleged. Aangezien steeds meer smartphones retina-schermen krijgen is de sprite in een nog hogere resolutie.<br />
+            <b>Type:</b> Sprite van 128 x 500 pixels (wxh) met transparante achtergrond.<br />
+            <b>CSS:</b><br />
+          <pre><code>C
+.__clslrt_mobile .__clslrt_widget .__clslrt_widget_faces .__clslrt_button {
+    background-image:url('URL_NAAR_AFBEELDING_VOOR_MOBIEL') !important;
+}
+          </code></pre></p>
+
+      </section>
+
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="../javascripts/scale.fix.js"></script>
+    <script type="text/javascript" src="../javascripts/docs.js"></script>
+  </body>
+</html>
