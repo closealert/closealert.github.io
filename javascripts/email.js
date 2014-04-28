@@ -12,6 +12,7 @@
       if(typeof value=='undefined') {
         value = $('#'+settingInputElementId).val();
       }
+      $('#'+settingInputElementId+'-output').show();
       $('#'+settingInputElementId+'-output').html(value);
     }
 
