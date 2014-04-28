@@ -12,8 +12,8 @@
       if(typeof value=='undefined') {
         value = $('#'+settingInputElementId).val();
       }
-      $('#'+settingInputElementId+'-output').show();
-      $('#'+settingInputElementId+'-output').html(value);
+      $('.'+settingInputElementId+'-output').show();
+      $('.'+settingInputElementId+'-output').html(value);
     }
 
     $('form#customize :input').on('change', function() {
