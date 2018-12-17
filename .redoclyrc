@@ -1,0 +1,7 @@
+specFileName: ../closealert/docs/api/v1.0.0.yml
+apiTitle: Reporting API
+splitSpec: false
+codeSamples: false
+swaggerUI: true
+travis: false
+oasVersion: 3.0.0
