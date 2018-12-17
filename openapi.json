@@ -1,0 +1,354 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "CloseAlert Reporting API",
+    "description": " This API is build by CloseAlert for its customers, so that they can easily get their data into their own systems.<br/><br/> <h3>Security</h3><p> You can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*. **Make sure not to test your API keys with this tool, since we cannot garantue its safety.**<br/><br/> <h2>IP Whitelisting</h2><p> For security reasons, you will need to whitelist your IP addresses in our [application](https://app.closealert.com/), otherwise you won't have access to the API.<br/><br/> <h2>IP Ratelimiting</h2><p> To prevent extensive use of our API by one client, our API is rate limited. On average a customer can access our API every X minutes. "
+  },
+  "servers": [
+    {
+      "url": "https://api.closealert.com/v1.0.0/"
+    }
+  ],
+  "paths": {
+    "/{project_key}/form_responses": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "project_key",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "the key of your project",
+          "example": "e.g. 'company.com'"
+        }
+      ],
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns responses from CloseAlert that are received.\n",
+        "parameters": [
+          {
+            "name": "form_id",
+            "in": "query",
+            "description": "Filter on a specific form. You can get a specific **form_id** by going to our [application](https://app.closealert.com/) > *Forms* and select the form you want to filter on. You will see the **form_id** in the URL between *edit/* and */questions*",
+            "required": false,
+            "style": "form",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "description": "Responses received since a specific date-time ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601))",
+            "example": "2018-12-12T09:35:05+00:00",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "Responses received until a specific date-time  ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601))",
+            "example": "2018-12-12T09:35:05+00:00",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Pagination; Maximum results per page",
+            "example": 20,
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Pagination; The page number",
+            "example": 1,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "form_responses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/form_response"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/meta"
+                    }
+                  },
+                  "example": {
+                    "form_responses": [
+                      {
+                        "id": 1,
+                        "created_at": "2014-03-17T17:22:10.055-07:00",
+                        "email": "peter@closealert.com",
+                        "mail_url": "http://www.closealert.com",
+                        "user_agent": "Mozilla/5.0 (Intel Mac OS X 10.9",
+                        "followed_up": true,
+                        "merge_tags": [
+                          {
+                            "age": 10,
+                            "gender": "male"
+                          }
+                        ],
+                        "form": {
+                          "id": 34,
+                          "form_type": "email-satisfaction,",
+                          "name": "Email satisfaction form"
+                        },
+                        "mailing": {
+                          "id": 42,
+                          "name": "Email satisfaction mailing"
+                        },
+                        "group": {
+                          "id": 44,
+                          "name": "Email satisfaction group"
+                        },
+                        "answers": [
+                          {
+                            "question": "What do you think of this email?",
+                            "question_type": "sentiment",
+                            "question_index": 1,
+                            "response_value": 1,
+                            "scale": 2
+                          },
+                          {
+                            "question": "Why are you positive?",
+                            "question_type": "comment",
+                            "question_index": 1.1,
+                            "response_value": "I love the articles in this email"
+                          }
+                        ]
+                      }
+                    ],
+                    "meta": {
+                      "page": 0,
+                      "page_number": 1,
+                      "total_pages": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Authentication failed"
+          },
+          "422": {
+            "description": "Validation failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "$ref": "#/components/schemas/error"
+                    }
+                  },
+                  "example": {
+                    "error": {
+                      "description": "Validation failed",
+                      "code": 422,
+                      "attributes": {
+                        "date_from": "invalid filter"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests"
+          },
+          "504": {
+            "description": "Took server too long to respond"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "form_response": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "the id of the form_response"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "the time stamp (ISO8601) this form_response was received"
+          },
+          "email": {
+            "type": "string",
+            "description": "the email address of the recipient"
+          },
+          "mail_url": {
+            "type": "string",
+            "description": "the mail_url of the recipient"
+          },
+          "user_agent": {
+            "type": "string",
+            "description": "the user agent of the recipient"
+          },
+          "followed_up": {
+            "type": "boolean",
+            "description": "whether a follow up mail was send by CloseAlert based on given answers"
+          },
+          "merge_tags": {
+            "type": "object",
+            "description": "the merge tags that were send by the ESP"
+          },
+          "form": {
+            "type": "object",
+            "description": "the form this response was received on",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "the id of the form"
+              },
+              "form_type": {
+                "type": "string",
+                "description": "the type of the form the response was received on"
+              },
+              "name": {
+                "type": "string",
+                "description": "the name of the form"
+              }
+            }
+          },
+          "mailing": {
+            "type": "object",
+            "description": "the mailing this response was received on",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "the id of the mailing"
+              },
+              "name": {
+                "type": "string",
+                "description": "the name of the mailing"
+              }
+            }
+          },
+          "group": {
+            "type": "object",
+            "description": "the group the mailing is in (either direct or nested)",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "the id of the group"
+              },
+              "name": {
+                "type": "string",
+                "description": "the name of the group"
+              }
+            }
+          },
+          "answer": {
+            "type": "array",
+            "description": "the given answers of the recipient",
+            "items": {
+              "type": "object",
+              "description": "answer object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "description": "the question that was asked"
+                },
+                "question_type": {
+                  "type": "string",
+                  "description": "the type of the question"
+                },
+                "question_index": {
+                  "type": "integer",
+                  "description": "The index of the question on received form"
+                },
+                "response_value": {
+                  "type": "string",
+                  "description": "The given answer of the recipient on this question"
+                }
+              }
+            }
+          }
+        }
+      },
+      "meta": {
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "The page number"
+          },
+          "per_page": {
+            "type": "integer",
+            "description": "Maximum results per page"
+          },
+          "total_pages": {
+            "type": "integer",
+            "description": "The total number of pages"
+          }
+        }
+      },
+      "error": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "The description of the error"
+          },
+          "code": {
+            "type": "integer",
+            "description": "The error code"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "An object containing key-value pairs with key=attribute, value=description of error"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
