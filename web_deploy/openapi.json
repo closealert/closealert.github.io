@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "CloseAlert Reporting API",
+    "title": "CloseAlert Reporting API WEB DEPLOY",
     "description": " This API is build by CloseAlert for its customers, so that they can easily get their data into their own systems.<br/><br/> <h3>Security</h3><p> You can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*. **Make sure not to test your API keys with this tool, since we cannot garantue its safety.**<br/><br/> <h2>IP Whitelisting</h2><p> For security reasons, you will need to whitelist your IP addresses in our [application](https://app.closealert.com/), otherwise you won't have access to the API.<br/><br/> <h2>IP Ratelimiting</h2><p> To prevent extensive use of our API by one client, our API is rate limited. On average a customer can access our API every X minutes. "
   },
   "servers": [
