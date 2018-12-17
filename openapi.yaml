@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: '1.0.0'
+  version: 'v1.0.0'
   title: CloseAlert Reporting API
   description: |
     **Versions**
@@ -34,7 +34,7 @@ paths:
     get:
       security:
         - bearerAuth: []
-      summary: Returns responses
+      summary: GET form_responses
       description: >
         Returns responses from CloseAlert that are received.
       parameters:

@@ -1,22 +1,21 @@
 openapi: 3.0.0
 info:
-  version: '2.0.0'
+  version: 'v2.0.0'
   title: CloseAlert Reporting API
   description: |
-    Versions
+    **Versions**
       - [v1.0.0](/v1.0.0)
       - [v2.0.0](/v2.0.0)
+
+    # Introduction
 
     An API to get CloseAlert responses into your own database.
 
     # Security
 
     You can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*
-
     # IP Whitelisting
-
     It's also recommended to whitelist your IP addresses, which will automatically block all other IP addresses from our API.
-
     # IP Ratelimiting
 
     Each access token can access the api maximum X in times in a period of Y minutes. It's also only possible to get data from a period not longer than a month. When no date params are given, data of only the last week is returned.
@@ -35,6 +34,7 @@ paths:
     get:
       security:
         - bearerAuth: []
+      summary: GET form_responses
       description: >
         Returns responses from CloseAlert that are received.
       parameters:

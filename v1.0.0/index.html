@@ -23,8 +23,12 @@
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
     <script>
       Redoc.init(
-        './openapi.yml',
-        {"theme":{"colors":{"primary":{"main":"#32329f"}}}},
+        './openapi.yaml',
+        {
+          "theme": {"colors": {"primary": {"main":"#32329f"}}},
+          "hideDownloadButton": true,
+          "noAutoAuth": false
+        },
         document.getElementById("redoc_container")
       );
     </script>
