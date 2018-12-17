@@ -2,7 +2,22 @@
 <html>
   <head>
     <title>Swagger UI CloseAlert Reporting API [V1.0.0]</title>
+    <!-- needed for adaptive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="swagger-ui.css">
+
+    <!--
+    ReDoc uses font options from the parent element
+    So override default browser styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
   </head>
   <body>
 
@@ -12,18 +27,18 @@
     <script src="swagger-ui-standalone-preset.js"></script>
 
     <script>
-      window.onload = function() {
-        const ui = SwaggerUIBundle({
-          url: "openapi.json",
-          dom_id: '#swagger-ui',
-          presets: [
-            SwaggerUIBundle.presets.apis,
-            SwaggerUIStandalonePreset
-          ]
-        })
+    window.onload = function() {
+      const ui = SwaggerUIBundle({
+        url: "openapi.json",
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ]
+      })
 
-        window.ui = ui
-      }
+      window.ui = ui
+    }
     </script>
 
 
