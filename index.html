@@ -24,7 +24,11 @@
     <script>
       Redoc.init(
         './openapi.yaml',
-        {"theme":{"colors":{"primary":{"main":"#32329f"}}}},
+        {
+          "theme": {"colors": {"primary": {"main":"#32329f"}}},
+          "hideDownloadButton": true
+        },
+
         document.getElementById("redoc_container")
       );
     </script>
