@@ -2,12 +2,12 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "CloseAlert Reporting API WEB DEPLOY",
-    "description": " This API is build by CloseAlert for its customers, so that they can easily get their data into their own systems.<br/><br/> <h3>Security</h3><p> You can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*. **Make sure not to test your API keys with this tool, since we cannot garantue its safety.**<br/><br/> <h2>IP Whitelisting</h2><p> For security reasons, you will need to whitelist your IP addresses in our [application](https://app.closealert.com/), otherwise you won't have access to the API.<br/><br/> <h2>IP Ratelimiting</h2><p> To prevent extensive use of our API by one client, our API is rate limited. On average a customer can access our API every X minutes. "
+    "title": "CloseAlert Reporting API",
+    "description": "Versions  - [v1.0.0](/v1.0.0)\n  - [v2.0.0](/v2.0.0)\n\nAn API to get CloseAlert responses into your own database.\n\nYou can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*\n\nIt's also recommended to whitelist your IP addresses, which will automatically block all other IP addresses from our API.\n\nEach access token can access the api maximum X in times in a period of Y minutes. It's also only possible to get data from a period not longer than a month. When no date params are given, data of only the last week is returned.\n"
   },
   "servers": [
     {
-      "url": "https://api.closealert.com/v1.0.0/"
+      "url": "http://api.closealert.local:8080/v1.0.0/"
     }
   ],
   "paths": {
@@ -35,10 +35,9 @@
           {
             "name": "form_id",
             "in": "query",
-            "description": "Filter on a specific form. You can get a specific **form_id** by going to our [application](https://app.closealert.com/) > *Forms* and select the form you want to filter on. You will see the **form_id** in the URL between *edit/* and */questions*",
+            "description": "To filter on a specific form",
             "required": false,
             "style": "form",
-            "example": 1,
             "schema": {
               "type": "integer"
             }
@@ -70,7 +69,7 @@
           {
             "name": "per_page",
             "in": "query",
-            "description": "Pagination; Maximum results per page",
+            "description": "Maximum results per page",
             "example": 20,
             "required": false,
             "style": "form",
@@ -81,8 +80,26 @@
           {
             "name": "page",
             "in": "query",
-            "description": "Pagination; The page number",
+            "description": "The page number",
             "example": 1,
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "mailing_id",
+            "in": "query",
+            "description": "The id of the mailing to filter on",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "group_id",
+            "in": "query",
+            "description": "The id of the group to filter on",
             "required": false,
             "schema": {
               "type": "integer"
