@@ -3,11 +3,11 @@ info:
   version: '1.0.0'
   title: CloseAlert Reporting API
   description: |
-    ## Versions
+    **Versions**
       - [v1.0.0](/1.0.0)
       - [v2.0.0](/2.0.0)
 
-    ## Introduction
+    # Introduction
 
     An API to get CloseAlert responses into your own database.
 
