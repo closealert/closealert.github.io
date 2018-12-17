@@ -19,7 +19,7 @@
 
   </head>
   <body>
-    <div id="redoc_container"></div>
+<!--     <div id="redoc_container"></div>
     <script src="https://cdn.jsdelivr.net/npm/redoc/bundles/redoc.standalone.js"></script>
     <script>
       Redoc.init(
@@ -27,6 +27,13 @@
         {"theme":{"colors":{"primary":{"main":"#32329f"}}}},
         document.getElementById("redoc_container")
       );
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+    <script>
+       Redoc.init('https://raw.githubusercontent.com/webhookrelay/swagger-webhookrelay/master/openapi.yaml', {
+           scrollYOffset: 60,
+           hideDownloadButton: true
+       }, document.getElementById('redoc'))
     </script>
   </body>
 </html>
