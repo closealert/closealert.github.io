@@ -8,17 +8,44 @@ info:
       - [v2.0.0](/v2.0.0)
 
     # Introduction
-
-    An API to get CloseAlert responses into your own database.
+    An API to get CloseAlert responses into your own database.The API is only available over the **HTTPS** protocol. This API is RESTful and will only return JSON.
 
     # Security
+    We have different security measurements in place to make sure this API is safe for you to use:
+    - Token based authentication
+    - Tokens can expire
+    - IP whitelisting
+    - API only accessible over HTTPS
+    - User / IP is blocked after too many failed authentication attempts
 
-    You can generate an API Access token by going to *'Settings > API Access Settings'* in our [application](https://app.closealert.com/). This token must be send as an **Authentication** header in each request, e.g. *'-H Authorization: Bearer 234sd987b9c87'*
+    # Authentication
+    For authentication you must use a JSON WEB Token [JWT] ([RFC7519](https://tools.ietf.org/html/rfc7519)). These can be generated only in our application. This is done by doing the following steps:
+    - 1. Go to our [application](https://app.closealert.com/)
+    - 2. Go to **Settings**
+    - 3. Go to **API Access**
+    - 4. Click on **Generate API Access Token**
+    - 5. Fill in name and in how many days the token must expire. (Choose 0 if you don't want it to expire)
+    - 6. Copy the generated token and safe it in a safe place. **Note**: This key is only provided once.
+
+    In this overview you will also see how many time the different keys are used and when the last time was they were used.
+
+
+    You must use the generated JWT by sending it with the **Authentication header** each request. For example, your JWT is `super.safe.token`, you must add the following header: *-H Authorization: Bearer super.safe.token'*
+
     # IP Whitelisting
-    It's also recommended to whitelist your IP addresses, which will automatically block all other IP addresses from our API.
-    # IP Ratelimiting
+    For authentication to work, you will only need to whitelist the IP addresses of your server(s) that will do the requests to our servers. This is done by doing the following steps:
+    - 1. Go to our [application](https://app.closealert.com/)
+    - 2. Go to **Settings**
+    - 3. Go to **API Access**
+    - 4. Scroll to **Whitelisted IP's**
+    - 5. Add your IP address(es). **Note:** When no IP addresses set, the API is not accessible.
 
-    Each access token can access the api maximum X in times in a period of Y minutes. It's also only possible to get data from a period not longer than a month. When no date params are given, data of only the last week is returned.
+    # Ratelimiting
+    To prevent the servers to be accessed too many times my one customer for a small period, the API is rate limited. When accessed too many times a `429` response is returned.
+
+    # Limitations
+    To prevent that our servers must return too much data at one time, it's only possible to get data of a period no longer than 10 days. It will also not return more than X TODO results per request. When not all the required data is returned at once, you can use the *meta* object that is also returned each request. This will give you info about pagination.
+
 servers:
   - url: 'http://api.closealert.local:8080/v1.0.0/'
 paths:
