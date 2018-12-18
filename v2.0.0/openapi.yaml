@@ -45,9 +45,11 @@ info:
 
     # Limitations
     To prevent that our servers must return too much data at one time, it's only possible to get data of a period no longer than 10 days. It will also not return more than X TODO results per request. When not all the required data is returned at once, you can use the *meta* object that is also returned each request. This will give you info about pagination.
-
+tags:
+  - name: 'form_responses'
 servers:
   - url: 'http://api.closealert.local:8080/v1.0.0/'
+
 paths:
   /{project_key}/form_responses:
     parameters:
@@ -59,9 +61,10 @@ paths:
       description: the key of your project
       example: e.g. 'company.com'
     get:
+      tags:
+        - form_responses
       security:
         - bearerAuth: []
-      summary: GET form_responses
       description: >
         Returns responses from CloseAlert that are received.
       parameters:
