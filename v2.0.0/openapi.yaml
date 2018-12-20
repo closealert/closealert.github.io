@@ -108,19 +108,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: mailing_id
-          in: query
-          description: The id of the mailing to filter on
-          required: false
-          schema:
-            type: integer
-        - name: group_id
-          in: query
-          description: The id of the group to filter on
-          required: false
-          schema:
-            type: integer
-
       responses:
         '200':
           description: successful operation
