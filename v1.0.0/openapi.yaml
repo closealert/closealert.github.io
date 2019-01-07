@@ -4,52 +4,40 @@ info:
   title: CloseAlert Reporting API
   description: |
     **Versions**
-      - [v1.0.0](/v1.0.0)
+      - v1.0.0
 
     # Introduction
     The CloseAlert Reporting API can be used to get your received feedback into your own systems.
     The API is only available over the **HTTPS** protocol with the `api.closealert.com` domain.
     This API is RESTful and will only return JSON.
 
-    # Security
-    We have different security measurements in place to make sure this API is safe for you to use:
-    - Token based authentication with tokens that can expire
-    - IP whitelisting
-    - API only accessible over HTTPS
-    - Entity / IP is blocked after too many failed authentication attempts
-
     # Authentication
     For authentication you must use a JSON WEB Token [JWT] ([RFC7519](https://tools.ietf.org/html/rfc7519)).
     These can be generated only in our application.
     This is done by doing the following steps:
-    - 1. Go to our [application](https://app.closealert.com/)
-    - 2. Go to **Settings**
-    - 3. Go to **API Access**
-    - 4. Click on **Generate API Access Token**
-    - 5. Fill in name and in how many days the token must expire. (Choose 0 if you don't want it to expire)
-    - 6. Copy the generated token and safe it in a safe place. **Note**: This key is only provided once.
-
-    In this overview you will also see how many times the different keys are used, when the last time was they were used, when if/when the key will expire.
+    - 1. Go to our [application](https://app.closealert.com/) -> **Settings** -> **API Access**
+    - 2. Click on **Generate API Access Token**
+    - 3. Fill in name and in how many days the token must expire. (Choose 0 if you don't want it to expire)
+    - 4. Copy the generated token and safe it in a safe place. **Note**: This key is only provided once.
 
     You must use the generated JWT by sending it with the **Authentication header** each request.
-    For example, your JWT is `super.safe.token`, you must add the following header: *-H Authorization: Bearer super.safe.token'*
+    For example, if your JWT is `super.safe.token`, you must add the following header to each request: *-H Authorization: Bearer super.safe.token'*
 
     # IP Whitelisting
     For authentication to work, you will need to whitelist the IP addresses of your server(s) that will do the requests to our servers. This is done by doing the following steps:
-    - 1. Go to our [application](https://app.closealert.com/)
-    - 2. Go to **Settings**
-    - 3. Go to **API Access**
-    - 4. Scroll to **Whitelisted IP's**
-    - 5. Add your IP address(es). **Note:** When no IP addresses set, the API is not accessible.
+    - 1. Go to our [application](https://app.closealert.com/) -> **Settings** -> **API Access**
+    - 2. Scroll to **Whitelisted IP's**
+    - 3. Add your IP address(es). **Note:** When no IP addresses set, the API is not accessible.
 
     # Ratelimiting
-    To prevent the servers to be accessed too many times by one customer for a small period, the API is rate limited.
-    When accessed too many times within a certain period, a `429` response is returned.
-    For rate limiting we use the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket).
+    In order to provide a high quality of service to all users of our API we may limit requests. If you start receiving '429' responses, please reduce the frequency of your requests.
+    For rate limiting we use the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket). This means that after you received a `429` response, and wait a few minutes,
+    you will be able to do successful requests again. In the meta data of the requests you can see how many requests are left in `requests_left` attribute.
 
-    # Limitations
-    To prevent that our servers must return too much data at one time, it's only possible to get data of a period no longer than 1 month.
-    It will also not return more than 250 results per request.
+    # Limitations & Pagination
+    To prevent that our servers don't return too much data at one time,
+    it's only possible to get data of a period no longer than 1 month.
+    It's also not possible to return more than 250 results per request.
     When not all the required data is returned at once, you can use the *meta* object that is also returned with each request.
     This will give you info about how many results and pages are available with given filters.
 tags:
@@ -115,18 +103,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: mailing_id
-          in: query
-          description: The id of the mailing to filter on
-          required: false
-          schema:
-            type: integer
-        - name: group_id
-          in: query
-          description: The id of the group to filter on
-          required: false
-          schema:
-            type: integer
 
       responses:
         '200':
@@ -180,7 +156,7 @@ paths:
                         - question: 'Can we have your info?'
                           question_type: 'form'
                           answer_type: 'email'
-                          question_index: '3.1'
+                          question_index: '3.1',
                           response_value: 'customer@provider.com'
 
                   meta:
