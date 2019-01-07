@@ -5,21 +5,23 @@ info:
   description: |
     **Versions**
       - [v1.0.0](/v1.0.0)
-      - [v2.0.0](/v2.0.0)
 
     # Introduction
-    An API to get CloseAlert responses into your own database.The API is only available over the **HTTPS** protocol. This API is RESTful and will only return JSON.
+    The CloseAlert Reporting API can be used to get your received feedback into your own systems.
+    The API is only available over the **HTTPS** protocol with the `api.closealert.com` domain.
+    This API is RESTful and will only return JSON.
 
     # Security
     We have different security measurements in place to make sure this API is safe for you to use:
-    - Token based authentication
-    - Tokens can expire
+    - Token based authentication with tokens that can expire
     - IP whitelisting
     - API only accessible over HTTPS
-    - User / IP is blocked after too many failed authentication attempts
+    - Entity / IP is blocked after too many failed authentication attempts
 
     # Authentication
-    For authentication you must use a JSON WEB Token [JWT] ([RFC7519](https://tools.ietf.org/html/rfc7519)). These can be generated only in our application. This is done by doing the following steps:
+    For authentication you must use a JSON WEB Token [JWT] ([RFC7519](https://tools.ietf.org/html/rfc7519)).
+    These can be generated only in our application.
+    This is done by doing the following steps:
     - 1. Go to our [application](https://app.closealert.com/)
     - 2. Go to **Settings**
     - 3. Go to **API Access**
@@ -27,13 +29,13 @@ info:
     - 5. Fill in name and in how many days the token must expire. (Choose 0 if you don't want it to expire)
     - 6. Copy the generated token and safe it in a safe place. **Note**: This key is only provided once.
 
-    In this overview you will also see how many time the different keys are used and when the last time was they were used.
+    In this overview you will also see how many times the different keys are used, when the last time was they were used, when if/when the key will expire.
 
-
-    You must use the generated JWT by sending it with the **Authentication header** each request. For example, your JWT is `super.safe.token`, you must add the following header: *-H Authorization: Bearer super.safe.token'*
+    You must use the generated JWT by sending it with the **Authentication header** each request.
+    For example, your JWT is `super.safe.token`, you must add the following header: *-H Authorization: Bearer super.safe.token'*
 
     # IP Whitelisting
-    For authentication to work, you will only need to whitelist the IP addresses of your server(s) that will do the requests to our servers. This is done by doing the following steps:
+    For authentication to work, you will need to whitelist the IP addresses of your server(s) that will do the requests to our servers. This is done by doing the following steps:
     - 1. Go to our [application](https://app.closealert.com/)
     - 2. Go to **Settings**
     - 3. Go to **API Access**
@@ -41,10 +43,15 @@ info:
     - 5. Add your IP address(es). **Note:** When no IP addresses set, the API is not accessible.
 
     # Ratelimiting
-    To prevent the servers to be accessed too many times my one customer for a small period, the API is rate limited. When accessed too many times a `429` response is returned.
+    To prevent the servers to be accessed too many times by one customer for a small period, the API is rate limited.
+    When accessed too many times within a certain period, a `429` response is returned.
+    For rate limiting we use the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket).
 
     # Limitations
-    To prevent that our servers must return too much data at one time, it's only possible to get data of a period no longer than 10 days. It will also not return more than X TODO results per request. When not all the required data is returned at once, you can use the *meta* object that is also returned each request. This will give you info about pagination.
+    To prevent that our servers must return too much data at one time, it's only possible to get data of a period no longer than 1 month.
+    It will also not return more than 250 results per request.
+    When not all the required data is returned at once, you can use the *meta* object that is also returned with each request.
+    This will give you info about how many results and pages are available with given filters.
 tags:
   - name: 'form_responses'
 servers:
@@ -66,7 +73,7 @@ paths:
       security:
         - bearerAuth: []
       description: >
-        Returns responses from CloseAlert that are received.
+        Returns responses from CloseAlert that are received. Sorted on 'created_at', ascending
       parameters:
         - name: form_id
           in: query
@@ -86,7 +93,7 @@ paths:
             format: date-time
         - name: until
           in: query
-          description: Responses received until a specific date-time  ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601))
+          description: Responses received until a specific date-time ([ISO8601](https://en.wikipedia.org/wiki/ISO_8601))
           example: '2018-12-12T09:35:05+00:00'
           required: false
           style: form
@@ -108,6 +115,19 @@ paths:
           required: false
           schema:
             type: integer
+        - name: mailing_id
+          in: query
+          description: The id of the mailing to filter on
+          required: false
+          schema:
+            type: integer
+        - name: group_id
+          in: query
+          description: The id of the group to filter on
+          required: false
+          schema:
+            type: integer
+
       responses:
         '200':
           description: successful operation
@@ -129,6 +149,8 @@ paths:
                       email: 'peter@closealert.com'
                       mail_url: 'http://www.closealert.com'
                       user_agent: 'Mozilla/5.0 (Intel Mac OS X 10.9'
+                      device_type: 'desktop'
+                      operating_system: 'macos'
                       followed_up: true
                       merge_tags:
                         - age: 10
@@ -146,17 +168,27 @@ paths:
                       answers:
                         - question: 'What do you think of this email?'
                           question_type: 'sentiment'
-                          question_index: 1
+                          answer_type: null
+                          question_index: '1'
                           response_value: 1
                           scale: 2
                         - question: 'Why are you positive?'
                           question_type: 'comment'
-                          question_index: 1.1
+                          answer_type: null
+                          question_index: '2'
                           response_value: 'I love the articles in this email'
+                        - question: 'Can we have your info?'
+                          question_type: 'form'
+                          answer_type: 'email'
+                          question_index: '3.1',
+                          response_value: 'customer@provider.com'
+
                   meta:
                     page: 0
                     page_number: 1
                     total_pages: 1
+        '403':
+          description: Authentication failed
         '422':
           description: Validation failed
           content:
@@ -174,8 +206,6 @@ paths:
                       date_from: invalid filter
         '429':
           description: Too many requests
-        '403':
-          description: Authentication failed
         '504':
           description: Took server too long to respond
 
@@ -199,6 +229,12 @@ components:
         user_agent:
           type: string
           description: the user agent of the recipient
+        device_type:
+          type: string
+          description: the device type of the recipient (mobile, tablet or desktop)
+        operating_system:
+          type: string
+          description: the operating system of the recipient (macos, ios, windows, linux, android or other)
         followed_up:
           type: boolean
           description: whether a follow up mail was send by CloseAlert based on given answers
@@ -240,7 +276,7 @@ components:
               description: the name of the group
         answer:
           type: array
-          description: the given answers of the recipient
+          description: the given answers of the recipient, sorted on question_index, ascending
           items:
             type: object
             description: answer object
@@ -252,11 +288,14 @@ components:
                 type: string
                 description: the type of the question
               question_index:
-                type: integer
+                type: string
                 description: The index of the question on received form
               response_value:
                 type: string
                 description: The given answer of the recipient on this question
+              answer_value:
+                type: string
+                description: The answer type
     meta:
       properties:
         page:
@@ -268,6 +307,9 @@ components:
         total_pages:
           type: integer
           description: The total number of pages
+        total_results:
+          type: integer
+          description: The total number of results
     error:
       properties:
         description:
