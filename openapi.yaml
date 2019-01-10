@@ -1,11 +1,8 @@
 openapi: 3.0.0
 info:
-  version: 'v1.0.0'
+  version: 'v1'
   title: CloseAlert Reporting API
   description: |
-    **Versions**
-      - v1.0.0
-
     # Introduction
     The CloseAlert Reporting API can be used to get your received CloseAlert feedback into your own systems.
     The API is only available over the **HTTPS** protocol with the `api.closealert.com` domain.
@@ -40,10 +37,17 @@ info:
     It's also not possible to return more than 250 results per request.
     When not all the required data is returned at once, you can use the *meta* object that is also returned with each request.
     This will give you info about how many results and pages are available with given filters.
+    You can also use the **links** object. This will contain URL's with the same filters with the first, next, last and previous page.
+
 tags:
   - name: 'form_responses'
 servers:
-  - url: 'http://api.closealert.local:8080/v1.0.0/'
+  - url: 'https://api.closealert.com/v1/'
+    description: Production Server
+  - url: 'https://api.closealert-staging.com/v1/'
+    description: Staging Server
+  - url: 'http://api.closealert.local:8080/v1/'
+    description: Local Server
 
 paths:
   /{project_key}/form_responses:
@@ -100,6 +104,7 @@ paths:
           style: form
           schema:
             type: integer
+            default: 100
         - name: page
           in: query
           description: The page number
@@ -107,7 +112,7 @@ paths:
           required: false
           schema:
             type: integer
-
+            default: 0
       responses:
         '200':
           description: successful operation
@@ -125,7 +130,7 @@ paths:
                 example:
                   form_responses:
                     - id: 1
-                      created_at: '2014-03-17T17:22:10.055-07:00'
+                      created_at: '2014-03-17T17:22:10'
                       email: 'peter@closealert.com'
                       mail_url: 'http://www.closealert.com'
                       user_agent: 'Mozilla/5.0 (Intel Mac OS X 10.9'
@@ -133,8 +138,8 @@ paths:
                       operating_system: 'macos'
                       followed_up: true
                       merge_tags:
-                        - age: 10
-                          gender: male
+                        age: 10
+                        gender: male
                       form:
                         id: 34
                         form_type: email-satisfaction,
@@ -164,8 +169,19 @@ paths:
                           response_value: 'customer@provider.com'
                   meta:
                     page: 0
-                    page_number: 1
-                    total_pages: 1
+                    per_page: 100
+                    total_pages: 2
+                    total_results: 23
+                    filters:
+                      form_id: null
+                      since: '2019-01-15T17:22:10'
+                      until: '2019-01-23T17:22:10'
+                    requests_left: 56
+                  links:
+                    first: https://api.closealert.com/v1/form_responses?page=0
+                    last: https://api.closealert.com/v1/form_responses?page=1
+                    next: https://api.closealert.com/v1/form_responses?page=1
+                    prev: null
         '403':
           description: Authentication failed
         '422':
@@ -289,6 +305,33 @@ components:
         total_results:
           type: integer
           description: The total number of results
+        filters:
+          type: object
+          description: The used filters for this request
+          properties:
+            form_id:
+              type: integer
+              description: The form_id that was filtered
+            since:
+              type: string
+              description: The since-filter as time stamp (ISO8601)
+            until:
+              type: string
+              description: The since-filter as time stamp (ISO8601)
+    links:
+      properties:
+        first:
+          type: string
+          description: The link of the first page of results with current filters
+        last:
+          type: string
+          description: The link of the last page of results with current filters
+        next:
+          type: string
+          description: The link of the next page of results with current filters, will be `null` if it doesn't exist
+        prev:
+          type: string
+          description: The link of the first page of results with current filters, will be `null` if it doesn't exist
     error:
       properties:
         description:
