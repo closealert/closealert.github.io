@@ -27,15 +27,15 @@ info:
 
     # Ratelimiting
     In order to provide a consistently high quality of service across the board we may limit requests.
-    In order to receive beyond `429` responses, please wait a few minutes and send additional requests again.
     For this the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket) is used.
+    When receiving responses with status code `429`, please wait a few minutes and send additional requests again.
     In the meta data of the requests you can see how many requests are left in the `requests_left` attribute.
 
     # Limitations & Pagination
     To prevent our servers from overloading, the maximum data date-range is 1 month.
     Further, the number of results per request is capped at a maximum of 250.
     Should not all required data be retuned at once, use the `meta` object sent along with each request.
-    This wil give you info on results and pages that are available within given filters.
+    This wil give you info on results and pages available within given filters.
     Alternatively use the links object. This will contains URLs with the same filters for the first, next, previous and last page.
 
 tags:
@@ -43,10 +43,10 @@ tags:
 servers:
   - url: 'https://api.closealert.com/v1/'
     description: Production Server
-  - url: 'https://api.closealert-staging.com/v1/'
-    description: Staging Server
-  - url: 'http://api.closealert.local:8080/v1/'
-    description: Local Server
+  # - url: 'https://api.closealert-staging.com/v1/'
+  #   description: Staging Server
+  # - url: 'http://api.closealert.local:8080/v1/'
+  #   description: Local Server
 
 paths:
   /{project_key}/form_responses:
@@ -155,7 +155,6 @@ paths:
                           answer_type: null
                           question_index: '1'
                           response_value: 1
-                          scale: 2
                         - question: 'Why are you positive?'
                           question_type: 'comment'
                           answer_type: null
