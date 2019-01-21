@@ -4,40 +4,39 @@ info:
   title: CloseAlert Reporting API
   description: |
     # Introduction
-    The CloseAlert Reporting API can be used to get your received CloseAlert feedback into your own systems.
+    The CloseAlert Reporting API can be used to import CloseAlert feedback into proprietary systems.
     The API is only available over the **HTTPS** protocol with the `api.closealert.com` domain.
     This API is RESTful and will only return JSON.
 
     # Authentication
     For authentication you must use a JSON WEB Token [JWT] ([RFC7519](https://tools.ietf.org/html/rfc7519)),
-    which can be generated only in our application.
-    This is done by doing the following steps:
-    - 1. Go to our [application](https://app.closealert.com/) -> **Settings** -> **API Access**
-    - 2. Click on **Generate API Access Token**
-    - 3. Fill in name and in how many days the token must expire. (Choose 0 if you don't want it to expire)
-    - 4. Copy the generated token and safe it in a safe place. **Note**: This key is only provided once.
+    which can only be generated from the CloseAlert application. To generate such a token please follow these steps:
+    - 1. Go to your [CloseAlert application](https://app.closealert.com/) -> **Settings** -> **API Access**
+    - 2. Select **Generate API Access Token**
+    - 3. Fill out name and alter how many days the token must be valid. (Choose 0 if you don't want it to expire).
+    - 4. Copy the generated token and save it in a secure place. **Note**: This key is only provided once and not stored anywhere else.
 
-    You must use the generated JWT by sending it with the **Authentication header** each request.
+    You must use the generated JWT for each request by sending it along with the **Authentication header**.
     For example, if your JWT is `super.safe.token`, you must add the following header to each request: *-H Authorization: Bearer super.safe.token'*
 
     ## IP Whitelisting
-    For authentication to work, you will need to whitelist the IP addresses of your server(s) that will do the requests to our servers. This is done by doing the following steps:
-    - 1. Go to our [application](https://app.closealert.com/) -> **Settings** -> **API Access**
+    For authentication to work, you will need to whitelist your servers' IP addresses from which the requests to our servers are sent. To whitelist IP addresses, please follow these steps:
+    - 1. Go to your [CloseAlert application](https://app.closealert.com/) -> **Settings** -> **API Access**
     - 2. Scroll to **Whitelisted IP's**
-    - 3. Add your IP address(es). **Note:** When no IP addresses set, the API is not accessible.
+    - 3. Add your IP address(es). **Note:** Without any IP addresses set, the API is not accessible.
 
     # Ratelimiting
-    In order to provide a high quality of service to all users of our API we may limit requests. If you start receiving `429` responses, please reduce the frequency of your requests.
-    For rate limiting we use the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket). This means that after you received a `429` response, and wait a few minutes,
-    you will be able to do successful requests again. In the meta data of the requests you can see how many requests are left in the `requests_left` attribute.
+    In order to provide a consistently high quality of service across the board we may limit requests.
+    In order to receive beyond `429` responses, please wait a few minutes and send additional requests again.
+    For this the [token bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket) is used.
+    In the meta data of the requests you can see how many requests are left in the `requests_left` attribute.
 
     # Limitations & Pagination
-    To prevent that our servers don't return too much data at one time,
-    it's only possible to get data of a period no longer than 1 month.
-    It's also not possible to return more than 250 results per request.
-    When not all the required data is returned at once, you can use the *meta* object that is also returned with each request.
-    This will give you info about how many results and pages are available with given filters.
-    You can also use the **links** object. This will contain URL's with the same filters with the first, next, last and previous page.
+    To prevent our servers from overloading, the maximum data date-range is 1 month.
+    Further, the number of results per request is capped at a maximum of 250.
+    Should not all required data be retuned at once, use the `meta` object sent along with each request.
+    This wil give you info on results and pages that are available within given filters.
+    Alternatively use the links object. This will contains URLs with the same filters for the first, next, previous and last page.
 
 tags:
   - name: 'form_responses'
@@ -65,13 +64,13 @@ paths:
       security:
         - bearerAuth: []
       description: >
-        Returns responses from CloseAlert that are received. Sorted on 'created_at', ascending
+        Returns responses from CloseAlert that are received. Sorted on 'created_at' in ascending order
       parameters:
         - name: form_id
           in: query
           description: |
-            To filter on a specific form. You can get a specific form_id by going to our [application](https://app.closealert.com/)
-            -> **Forms** and go to the form you want to filter on. You will now see the **form_id** in the url between **edit/** and **/questions**
+            To filter on a specific form. You can get a specific form_id by going to your [CloseAlert application](https://app.closealert.com/)
+            -> **Forms** and select the form you want to filter on. You will now see the **form_id** in the url between **edit/** and **/questions**
           required: false
           style: form
           schema:
@@ -210,29 +209,29 @@ components:
       properties:
         id:
           type: integer
-          description: the id of the form_response
+          description: the form_response id
         created_at:
           type: string
           format: date-time
           description: the time stamp (ISO8601) this form_response was received
         email:
           type: string
-          description: the email address of the recipient
+          description: the respondent email address
         mail_url:
           type: string
-          description: the mail_url of the recipient
+          description: the respondent mail_url
         user_agent:
           type: string
-          description: the user agent of the recipient
+          description: the respondent user agent
         device_type:
           type: string
-          description: the device type of the recipient (mobile, tablet or desktop)
+          description: the respondent device type, tablet or desktop)
         operating_system:
           type: string
-          description: the operating system of the recipient (macos, ios, windows, linux, android or other)
+          description: the respondent operating system (macos, ios, windows, linux, android, or other)
         followed_up:
           type: boolean
-          description: whether a follow up mail was send by CloseAlert based on given answers
+          description: whether a follow up mail was sent from CloseAlert based on given answers
         merge_tags:
           type: object
           description: the merge tags that were send by the ESP
@@ -242,13 +241,13 @@ components:
           properties:
             id:
               type: integer
-              description: the id of the form
+              description: the form id
             form_type:
               type: string
-              description: the type of the form the response was received on
+              description: the type of form the response was received on
             name:
               type: string
-              description: the name of the form
+              description: the form name
         mailing:
           type: object
           description: the mailing this response was received on
@@ -271,7 +270,7 @@ components:
               description: the name of the group
         answers:
           type: array
-          description: the given answers of the recipient, sorted on question_index, ascending
+          description: the respondent answers, sorted on question_index, ascending order
           items:
             type: object
             description: answer object
@@ -287,7 +286,7 @@ components:
                 description: The index of the question on received form
               response_value:
                 type: string
-                description: The given answer of the recipient on this question
+                description: The respondent's answer to this question
               answer_value:
                 type: string
                 description: The answer type
