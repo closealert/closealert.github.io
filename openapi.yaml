@@ -286,7 +286,7 @@ components:
               response_value:
                 type: string
                 description: The respondent's answer to this question
-              answer_value:
+              answer_type:
                 type: string
                 description: The answer type
     meta:
