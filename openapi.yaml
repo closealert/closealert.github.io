@@ -15,7 +15,7 @@ info:
     - 2. Select **Generate API Access Token**
     - 3. Fill out name
     - 4. Fill out how many days the token must be valid.
-      - 14 and 7 days prior to expiration of the token you will an e-mail to remind you to create a new token.
+      - 14 and 7 days prior to expiration of the token you will receive an e-mail to remind you to create a new token.
     - 4. Copy the generated token and save it in a secure place. **Note**: This key is only provided once and not stored anywhere else.
 
     You must use the generated JWT for each request by sending it along with the **Authentication header**.
